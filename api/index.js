@@ -127,6 +127,22 @@ app.post('/api/labs/submit', authenticateToken, async (req, res) => {
     }
 });
 
+app.get('/api/labs/progress', authenticateToken, async (req, res) => {
+    const { userId } = req.query;
+    if (req.user.id !== userId && req.user.role !== 'teacher') return res.status(403).json({ error: 'Forbidden' });
+
+    try {
+        const [rows] = await pool.query('SELECT lab_id, is_completed, code FROM user_labs WHERE user_id = ?', [userId]);
+        const completedMap = {};
+        rows.forEach(row => {
+            completedMap[row.lab_id] = !!row.is_completed;
+        });
+        res.json({ success: true, completedMap, labs: rows });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
 app.get('/api/teacher/students', authenticateToken, async (req, res) => {
     if (req.user.role !== 'teacher') return res.status(403).json({ error: 'Forbidden' });
 
@@ -144,12 +160,12 @@ app.get('/api/teacher/students', authenticateToken, async (req, res) => {
             });
 
             const completedCount = labs.filter(l => l.is_completed).length;
-            student.consistency = Math.min(100, completedCount * 20 + 30);
+            student.consistency = Math.min(100, completedCount * 2 + 10);
             student.skills = {
-                logic: student.completedMap['syntax-lab'] ? 90 : 45,
-                variables: student.completedMap['variables-lab'] ? 85 : 40,
-                functions: student.completedMap['lab-71'] ? 80 : 35,
-                problemSolving: student.xp > 200 ? 90 : 50,
+                logic: student.completedMap['b-01'] ? 90 : 45,
+                variables: student.completedMap['v-01'] ? 85 : 40,
+                functions: student.completedMap['f-01'] ? 80 : 30,
+                problemSolving: student.completedMap['t-01'] ? 95 : 35,
                 consistency: student.consistency
             };
         }
