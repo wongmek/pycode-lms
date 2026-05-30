@@ -850,7 +850,7 @@ export default function App() {
                             <span className="text-3xl">👨‍🏫</span>
                             <div className="text-left">
                                 <span className="text-blue-400 font-bold text-xs block">มานะ บากบั่น (Teacher)</span>
-                                <span className="text-[10px] text-slate-500">ทดสอบรหัสผ่าน PIN: 328221</span>
+                                <span className="text-[10px] text-slate-500">ระบุรหัสผ่านเพื่อเข้าถึงข้อมูลนักเรียน</span>
                             </div>
                         </button>
                         <button onClick={() => handleQuickDemoBypass('parent')} className="flex-1 bg-slate-900/60 border border-slate-800/60 hover:border-pink-500/40 p-4 rounded-xl flex items-center gap-3 transition-all">
