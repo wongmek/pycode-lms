@@ -1203,7 +1203,7 @@ export default function App() {
                                         <div className="absolute top-0 inset-x-0 h-2 bg-blue-500"></div>
                                         <span className="text-6xl mb-4 block">🔒</span>
                                         <h2 className="text-xl font-black text-slate-100 mb-2">Teacher Security PIN</h2>
-                                        <p className="text-xs text-slate-400 mb-6">กรุณาระบุรหัสผ่านเพื่อเข้าถึงข้อมูลนักเรียน (Hint: 328221)</p>
+                                        <p className="text-xs text-slate-400 mb-6">กรุณาระบุรหัสผ่านเพื่อเข้าถึงข้อมูลนักเรียน</p>
 
                                         <form onSubmit={handleTeacherPinSubmit} className="space-y-4">
                                             <input
@@ -1226,7 +1226,7 @@ export default function App() {
 
                         // -- TEACHER DASHBOARD LOGIC --
                         const activeStudent = studentList.find(s => s.id === selectedStudentId) || studentList[0];
-                        
+
                         if (!activeStudent) {
                             return (
                                 <div className="flex flex-col items-center justify-center min-h-[400px] text-slate-500">
