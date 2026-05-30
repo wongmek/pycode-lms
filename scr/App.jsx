@@ -578,6 +578,11 @@ export default function App() {
     };
 
     const handleQuickDemoBypass = async (role) => {
+        if (role === 'student') {
+            alert('เพื่อประสิทธิภาพสูงสุดและการบันทึกคะแนนสะสม (XP) ของคุณลงในระบบฐานข้อมูลจริง กรุณา "สมัครสมาชิก" หรือ "เข้าสู่ระบบ" ก่อนเข้าเรียนนะครับ');
+            return;
+        }
+
         if (role === 'teacher') {
             try {
                 // ยิง Login จริงสำหรับ Teacher Demo เพื่อให้ได้ JWT Token ไปคุยกับ MySQL หลังบ้าน
@@ -755,10 +760,7 @@ export default function App() {
                 <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-purple-600 to-teal-400 flex items-center justify-center text-3xl font-black text-white shadow-2xl shadow-purple-500/40 mb-6">
                     Py
                 </div>
-                <h1 className="text-3xl font-black text-white mb-2 text-center">เข้าสู่ระบบ PyCode LMS</h1>
-                <p className="text-slate-400 text-sm mb-6 text-center max-w-md leading-relaxed">
-                    ระบบจัดการการเรียนรู้ฉบับอัปเกรด (60 ด่าน + เชื่อมโยง MySQL หลังบ้านจริง)
-                </p>
+                <h1 className="text-3xl font-black text-white mb-6 text-center">เข้าสู่ระบบ PyCode LMS</h1>
 
                 {/* AUTH FORM */}
                 <div className="w-full max-w-md bg-slate-900 border border-slate-800/80 rounded-2xl p-6 shadow-2xl mb-6">
